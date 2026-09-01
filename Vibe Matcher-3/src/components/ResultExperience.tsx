@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Copy, Download, Share2 } from "lucide-react";
 
 import { MatchRing } from "@/components/MatchRing";
-import { Portrait } from "@/components/Portrait";
+import { AdSense } from "@/components/AdSense";import { Portrait } from "@/components/Portrait";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteNav } from "@/components/SiteNav";
 import { Button } from "@/components/ui/button";
