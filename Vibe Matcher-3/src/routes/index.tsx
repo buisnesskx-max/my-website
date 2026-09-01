@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Gem, Glasses } from "lucide-react";
 
 import { Portrait } from "@/components/Portrait";
+import { AdSense } from "@/components/AdSense";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteNav } from "@/components/SiteNav";
 import { Button } from "@/components/ui/button";
@@ -39,7 +40,7 @@ function Home() {
     <section className="relative overflow-hidden veil"><div className="mx-auto grid max-w-6xl items-center gap-12 px-5 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:py-24"><div className="animate-rise"><p className="eyebrow">Two independent personality tests</p><h1 className="mt-5 font-display text-5xl leading-[0.98] sm:text-7xl">Find Your <span className="text-accent-gradient">Stacy</span>.<br />Find Your <span className="text-accent-gradient">Chad</span>.</h1><p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">Choose a test, answer questions built specifically for that category, and discover the personality match closest to your vibe.</p><div className="mt-9 flex flex-wrap gap-3"><Button variant="outline" asChild className="h-auto rounded-full px-8 py-4 text-xs uppercase tracking-[0.18em]"><Link to="/how-it-works">How It Works</Link></Button></div></div><div className="animate-fade grid grid-cols-2 gap-4"><figure className="aspect-[3/4] overflow-hidden rounded-3xl border border-border"><img src={heroStacy} alt="Editorial portrait representing the Stacy test" width={768} height={1024} className="h-full w-full object-cover" /></figure><figure className="mt-10 aspect-[3/4] overflow-hidden rounded-3xl border border-border"><img src={heroChad} alt="Editorial portrait representing the Chad test" width={768} height={1024} className="h-full w-full object-cover" /></figure></div></div></section>
 
     <section aria-labelledby="choose-test" className="mx-auto max-w-6xl px-5 py-20"><div className="max-w-2xl"><p className="eyebrow">Choose your category</p><h2 id="choose-test" className="mt-3 font-display text-4xl sm:text-6xl">Two tests. Two distinct matches.</h2></div><div className="mt-10 grid gap-6 lg:grid-cols-2"><CategoryCard category="stacy" title="Find Your Stacy" question="Which Stacy matches your personality?" body="Answer a series of Stacy-specific questions and discover your closest match." people={featuredStacies.slice(0, 3)} /><CategoryCard category="chad" title="Find Your Chad" question="Which Chad matches your personality?" body="Answer a series of Chad-specific questions and discover your closest match." people={featuredChads.slice(0, 3)} /></div></section>
-
+    <AdSense />
     {saved.stacy && saved.chad && <YourResults stacy={saved.stacy} chad={saved.chad} />}
 
     <section className="border-y border-border/70 bg-card/40 py-20"><div className="mx-auto max-w-6xl px-5"><h2 className="font-display text-4xl sm:text-5xl">How it works</h2><ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{STEPS.map(([number, title, body]) => <li key={number} className="surface-card p-7"><span className="font-display text-3xl text-accent-gradient">{number}</span><h3 className="mt-3 text-lg">{title}</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{body}</p></li>)}</ol></div></section>
