@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Gem, Glasses } from "lucide-react";
 
 import { Portrait } from "@/components/Portrait";
-import { AdSense } from "@/components/AdSense";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteNav } from "@/components/SiteNav";
 import { Button } from "@/components/ui/button";
