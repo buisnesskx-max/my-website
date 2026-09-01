@@ -46,7 +46,7 @@ function Home() {
     <section className="border-y border-border/70 bg-card/40 py-20"><div className="mx-auto max-w-6xl px-5"><h2 className="font-display text-4xl sm:text-5xl">How it works</h2><ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{STEPS.map(([number, title, body]) => <li key={number} className="surface-card p-7"><span className="font-display text-3xl text-accent-gradient">{number}</span><h3 className="mt-3 text-lg">{title}</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{body}</p></li>)}</ol></div></section>
     <FeaturedRow title="Featured Stacy matches" people={featuredStacies} />
     <FeaturedRow title="Featured Chad matches" people={featuredChads} />
-    
+    <AdSense />    
   </main><SiteFooter /></div>;
 }
 
