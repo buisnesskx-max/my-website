@@ -74,7 +74,7 @@ function Terms() {
 
         <Section title="Acceptable use">
           <p>
-            Use the site for personal, non-commercial enjoyment. Please do not attempt to break,
+            Use the site for personal, otherwise lawful purposes. Please do not attempt to break,
             overload, scrape at scale, or interfere with the site or other people's use of it, and do
             not use it to harass anyone or to misrepresent the results as factual claims about a real
             person.
@@ -83,8 +83,8 @@ function Terms() {
 
         <Section title="Intellectual property">
           <p>
-            The site's name, design, written questions and answer options, written descriptions,
-            scoring system and source code are original work owned by the site operator. You may
+            The site's original questions, descriptions, branding, scoring implementation, and other original
+            content are owned by the site operator, subject to any applicable third-party rights You may
             share result links and result cards; please do not copy the quiz content or code for your
             own site without permission.
           </p>
