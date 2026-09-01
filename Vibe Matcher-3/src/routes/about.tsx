@@ -14,7 +14,8 @@ export const Route = createFileRoute("/about")({
       { property: "og:title", content: "About — My Stacy & Chad" },
       {
         property: "og:description",
-        content: "An entertainment personality-matching experience — not a psychological assessment.",
+        content:
+          "An entertainment personality-matching experience — not a psychological assessment.",
       },
     ],
   }),

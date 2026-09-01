@@ -24,10 +24,7 @@ export function Portrait({
 
   return (
     <div
-      className={cn(
-        "relative isolate overflow-hidden rounded-[inherit] bg-elevated",
-        className,
-      )}
+      className={cn("relative isolate overflow-hidden rounded-[inherit] bg-elevated", className)}
     >
       {showImage ? (
         <img

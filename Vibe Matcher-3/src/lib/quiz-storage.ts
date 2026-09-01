@@ -20,21 +20,31 @@ export function loadAnswers(category: Category): Record<string, string> {
 
 export function saveAnswers(category: Category, answers: Record<string, string>) {
   if (typeof window === "undefined") return;
-  try { window.localStorage.setItem(key(category, "answers"), JSON.stringify(answers)); } catch { /* continue in memory */ }
+  try {
+    window.localStorage.setItem(key(category, "answers"), JSON.stringify(answers));
+  } catch {
+    /* continue in memory */
+  }
 }
 
 export function clearAnswers(category: Category) {
   if (typeof window === "undefined") return;
   try {
     window.localStorage.removeItem(key(category, "answers"));
-  } catch { /* storage unavailable */ }
+  } catch {
+    /* storage unavailable */
+  }
 }
 
 /** Full reset for a deliberate restart: answers and the saved result. Question order is fixed. */
 export function clearQuizState(category: Category) {
   clearAnswers(category);
   if (typeof window === "undefined") return;
-  try { window.localStorage.removeItem(key(category, "result")); } catch { /* storage unavailable */ }
+  try {
+    window.localStorage.removeItem(key(category, "result"));
+  } catch {
+    /* storage unavailable */
+  }
 }
 
 export function encodeResult(personId: string, score: number) {
@@ -50,13 +60,21 @@ export function decodeResult(code: string) {
 
 export function saveCompletedResult(result: SavedResult) {
   if (typeof window === "undefined") return;
-  try { window.localStorage.setItem(key(result.category, "result"), JSON.stringify(result)); } catch { /* optional */ }
+  try {
+    window.localStorage.setItem(key(result.category, "result"), JSON.stringify(result));
+  } catch {
+    /* optional */
+  }
 }
 
 export function loadCompletedResult(category: Category): SavedResult | null {
   if (typeof window === "undefined") return null;
   try {
-    const parsed = JSON.parse(window.localStorage.getItem(key(category, "result")) ?? "null") as SavedResult | null;
+    const parsed = JSON.parse(
+      window.localStorage.getItem(key(category, "result")) ?? "null",
+    ) as SavedResult | null;
     return parsed?.category === category ? parsed : null;
-  } catch { return null; }
+  } catch {
+    return null;
+  }
 }
