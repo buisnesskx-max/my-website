@@ -3,7 +3,6 @@ import { useEffect, useMemo, useState } from "react";
 import { Copy, Download, Share2 } from "lucide-react";
 
 import { MatchRing } from "@/components/MatchRing";
-import { AdSense } from "@/components/AdSense";
 import { Portrait } from "@/components/Portrait";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteNav } from "@/components/SiteNav";
@@ -65,8 +64,9 @@ export function ResultExperience({ category, code }: { category: Category; code:
       </article>
       {own && <><section className="mt-16 surface-card p-7 sm:p-10"><h2 className="font-display text-3xl">Your personality profile</h2><div className="mt-6 grid gap-4 sm:grid-cols-2">{strongestTraits(own.profile, 6).map((dimension) => <div key={dimension}><div className="flex justify-between text-sm"><span>{DIMENSION_LABELS[dimension]}</span><span className="text-muted-foreground">{own.profile[dimension]}</span></div><div className="mt-2 h-1.5 overflow-hidden rounded-full bg-muted"><div className="h-full rounded-full bg-primary" style={{ width: `${own.profile[dimension]}%` }} /></div></div>)}</div></section><TopFive title={`Your Top 5 ${noun === "Stacy" ? "Stacies" : "Chads"}`} matches={own.matches.slice(0, 5)} /></>}
       <section className="mt-20 border-t border-border pt-12 text-center"><h2 className="font-display text-3xl sm:text-4xl">Share your {noun}</h2><div className="mt-7 flex flex-wrap justify-center gap-3"><Button variant="outline" onClick={() => copyText(shareText)} className="h-auto rounded-full px-6 py-3 text-xs uppercase tracking-[0.15em]"><Copy />{copied ? "Copied" : "Copy result"}</Button><Button onClick={share} className="h-auto rounded-full px-6 py-3 text-xs uppercase tracking-[0.15em]"><Share2 />Share</Button><Button variant="outline" onClick={download} className="h-auto rounded-full px-6 py-3 text-xs uppercase tracking-[0.15em]"><Download />Download card</Button></div><div className="mt-10 flex flex-wrap justify-center gap-3"><Button onClick={retake} className="h-auto rounded-full px-7 py-3 text-xs uppercase tracking-[0.18em]">Retake test</Button><Button variant="outline" asChild className="h-auto rounded-full px-7 py-3 text-xs uppercase tracking-[0.18em]"><Link to={opposite === "stacy" ? "/quiz/stacy" : "/quiz/chad"}>Take the {opposite} test</Link></Button><Button variant="ghost" asChild className="h-auto rounded-full px-7 py-3 text-xs uppercase tracking-[0.18em]"><Link to="/">Back to home</Link></Button></div></section>
-      <p className="mx-auto mt-10 max-w-2xl text-center text-xs leading-relaxed text-muted-foreground">This is an entertainment personality quiz. Results reflect the quiz's fictional scoring profiles, not claims about the real people featured.</p><AdSense />  </div>;
-}
+      <p className="mx-auto mt-10 max-w-2xl text-center text-xs leading-relaxed text-muted-foreground">This is an entertainment personality quiz. Results reflect the quiz's fictional scoring profiles, not claims about the real people featured.</p>
+</main><SiteFooter />
+</div>;}
 
 function InvalidResult({ category }: { category: Category }) {
   const path = category === "stacy" ? "/quiz/stacy" : "/quiz/chad";
