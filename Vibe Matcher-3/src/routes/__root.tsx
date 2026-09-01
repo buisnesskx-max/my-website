@@ -77,7 +77,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "My Stacy & Chad — Find Your Celebrity Match },
+      { title: "My Stacy & Chad — Find Your Celebrity Match" },
       { name: "description", content: "Two independent personality tests to discover your closest Stacy and Chad matches." },
       { name: "author", content: "My Stacy & Chad" },
       { property: "og:title", content: "My Stacy & Chad" },
