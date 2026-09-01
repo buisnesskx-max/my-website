@@ -1,6 +1,10 @@
 import type { Category } from "@/data/people";
 
-interface CardData { category: Category; name: string; score: number; }
+interface CardData {
+  category: Category;
+  name: string;
+  score: number;
+}
 
 export function drawShareCard(data: CardData): string | null {
   if (typeof document === "undefined") return null;

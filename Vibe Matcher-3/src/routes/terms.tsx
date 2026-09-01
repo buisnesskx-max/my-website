@@ -49,8 +49,8 @@ function Terms() {
 
         <Section title="What this site is">
           <p>
-            My Stacy &amp; Chad is a free entertainment quiz. You answer a fixed set of questions and
-            the site shows which entries in its database your answers are closest to.
+            My Stacy &amp; Chad is a free entertainment quiz. You answer a fixed set of questions
+            and the site shows which entries in its database your answers are closest to.
           </p>
         </Section>
 
@@ -58,8 +58,8 @@ function Terms() {
           <p>
             Results are produced by a simple, fixed scoring formula written for fun. They are not
             scientific, psychological, medical, diagnostic or predictive, they do not measure your
-            personality, attractiveness, appearance, identity or worth, and they should not be relied
-            on for any decision. Nothing here is professional advice of any kind.
+            personality, attractiveness, appearance, identity or worth, and they should not be
+            relied on for any decision. Nothing here is professional advice of any kind.
           </p>
         </Section>
 
@@ -75,18 +75,18 @@ function Terms() {
         <Section title="Acceptable use">
           <p>
             Use the site for personal, otherwise lawful purposes. Please do not attempt to break,
-            overload, scrape at scale, or interfere with the site or other people's use of it, and do
-            not use it to harass anyone or to misrepresent the results as factual claims about a real
-            person.
+            overload, scrape at scale, or interfere with the site or other people's use of it, and
+            do not use it to harass anyone or to misrepresent the results as factual claims about a
+            real person.
           </p>
         </Section>
 
         <Section title="Intellectual property">
           <p>
-            The site's original questions, descriptions, branding, scoring implementation, and other original
-            content are owned by the site operator, subject to any applicable third-party rights You may
-            share result links and result cards; please do not copy the quiz content or code for your
-            own site without permission.
+            The site's original questions, descriptions, branding, scoring implementation, and other
+            original content are owned by the site operator, subject to any applicable third-party
+            rights You may share result links and result cards; please do not copy the quiz content
+            or code for your own site without permission.
           </p>
           <p>
             Celebrity names, trademarks and photographs are not owned by this site. Photographs come
@@ -131,8 +131,8 @@ function Terms() {
               buisnesskx@gmail.com
             </a>{" "}
             with the entry and the reason. Requests are handled promptly and the database is
-            structured so any entry can be edited or deleted quickly. The same address is the contact
-            point for privacy and legal questions.
+            structured so any entry can be edited or deleted quickly. The same address is the
+            contact point for privacy and legal questions.
           </p>
         </Section>
       </main>

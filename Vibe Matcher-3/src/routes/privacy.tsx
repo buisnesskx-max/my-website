@@ -68,22 +68,22 @@ function Privacy() {
             identity. We cannot read them.
           </p>
           <p>
-            Clearing your browser data, or using “Start over” in a quiz, deletes them. Two small keys
-            are stored per quiz: your answers, and your last completed result.
+            Clearing your browser data, or using “Start over” in a quiz, deletes them. Two small
+            keys are stored per quiz: your answers, and your last completed result.
           </p>
           <p>
             Result links contain only the matched name and the match percentage — never your
-            individual answers. Anyone you send a link to sees the same result page and nothing about
-            how you answered.
+            individual answers. Anyone you send a link to sees the same result page and nothing
+            about how you answered.
           </p>
         </Section>
 
         <Section title="Cookies and similar technologies">
           <p>
-            This site sets no cookies at all — not for essential purposes, not for analytics, not for
-            advertising. It does use browser local storage, which is a similar technology, purely to
-            remember your quiz progress on your own device. It is strictly functional, it is not
-            shared with anyone, and it is not used to track you across sites.
+            This site sets no cookies at all — not for essential purposes, not for analytics, not
+            for advertising. It does use browser local storage, which is a similar technology,
+            purely to remember your quiz progress on your own device. It is strictly functional, it
+            is not shared with anyone, and it is not used to track you across sites.
           </p>
           <p>
             Because there is no tracking, no analytics and no advertising, this site does not
@@ -104,8 +104,8 @@ function Privacy() {
           <p>
             <strong className="text-foreground">Wikimedia Commons.</strong> Most celebrity portraits
             are loaded directly from Wikimedia's image servers. Your browser therefore contacts
-            Wikimedia, which can see your IP address and user-agent for that image request. Wikimedia
-            does not receive your answers or your result.
+            Wikimedia, which can see your IP address and user-agent for that image request.
+            Wikimedia does not receive your answers or your result.
           </p>
           <p>
             There are no other embedded third parties: no third-party fonts, no video or social
@@ -115,9 +115,9 @@ function Privacy() {
 
         <Section title="Children">
           <p>
-            This site is a general-audience entertainment quiz and is not directed at children. We do
-            not knowingly collect personal information from anyone, including children, because we do
-            not collect personal information at all.
+            This site is a general-audience entertainment quiz and is not directed at children. We
+            do not knowingly collect personal information from anyone, including children, because
+            we do not collect personal information at all.
           </p>
         </Section>
 

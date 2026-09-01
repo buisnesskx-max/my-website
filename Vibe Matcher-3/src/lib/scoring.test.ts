@@ -48,7 +48,9 @@ describe.each(CATEGORIES)("%s data integrity", (category: Category) => {
     const questions = QUESTIONS_BY_CATEGORY[category];
     expect(new Set(questions.map((question) => question.id)).size).toBe(questions.length);
     for (const question of questions) {
-      expect(new Set(question.options.map((option) => option.id)).size).toBe(question.options.length);
+      expect(new Set(question.options.map((option) => option.id)).size).toBe(
+        question.options.length,
+      );
       for (const option of question.options) {
         const entries = Object.entries(option.w);
         expect(entries.length).toBeGreaterThan(0);
@@ -68,8 +70,9 @@ describe.each(CATEGORIES)("%s scoring", (category: Category) => {
       const answers = answerSet(category, seed);
       const first = computeCategoryResults(category, answers);
       const second = computeCategoryResults(category, { ...answers });
-      expect(second.matches.map((match) => `${match.person.id}:${match.score}`))
-        .toEqual(first.matches.map((match) => `${match.person.id}:${match.score}`));
+      expect(second.matches.map((match) => `${match.person.id}:${match.score}`)).toEqual(
+        first.matches.map((match) => `${match.person.id}:${match.score}`),
+      );
     }
   });
 
@@ -84,7 +87,9 @@ describe.each(CATEGORIES)("%s scoring", (category: Category) => {
   it("recalculates rather than defaulting to a fixed winner", () => {
     const winners = new Set<string>();
     for (let seed = 1; seed <= 200; seed += 1) {
-      winners.add(computeCategoryResults(category, answerSet(category, seed)).matches[0]!.person.id);
+      winners.add(
+        computeCategoryResults(category, answerSet(category, seed)).matches[0]!.person.id,
+      );
     }
     expect(winners.size).toBeGreaterThan(5);
   });
@@ -94,16 +99,19 @@ describe.each(CATEGORIES)("%s scoring", (category: Category) => {
     const question = QUESTIONS_BY_CATEGORY[category][0]!;
     const other = question.options.find((option) => option.id !== base[question.id])!;
     const changed = { ...base, [question.id]: other.id };
-    expect(computeCategoryResults(category, changed).matches[0]!.person.id)
-      .toBe(computeCategoryResults(category, { ...changed }).matches[0]!.person.id);
-    expect(computeCategoryResults(category, base).profile)
-      .not.toEqual(computeCategoryResults(category, changed).profile);
+    expect(computeCategoryResults(category, changed).matches[0]!.person.id).toBe(
+      computeCategoryResults(category, { ...changed }).matches[0]!.person.id,
+    );
+    expect(computeCategoryResults(category, base).profile).not.toEqual(
+      computeCategoryResults(category, changed).profile,
+    );
   });
 
   it("ignores answers belonging to the other category", () => {
     const answers = answerSet(category, 3);
     const foreign = answerSet(category === "stacy" ? "chad" : "stacy", 9);
-    expect(computeCategoryResults(category, { ...answers, ...foreign }).matches[0]!.person.id)
-      .toBe(computeCategoryResults(category, answers).matches[0]!.person.id);
+    expect(computeCategoryResults(category, { ...answers, ...foreign }).matches[0]!.person.id).toBe(
+      computeCategoryResults(category, answers).matches[0]!.person.id,
+    );
   });
 });

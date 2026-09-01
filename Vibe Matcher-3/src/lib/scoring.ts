@@ -26,7 +26,10 @@ export interface UserSignal {
 }
 
 /** Aggregate the exact options the user selected into a 0-100 profile plus coverage. */
-export function buildUserSignal(answers: Record<string, string>, questions: Question[]): UserSignal {
+export function buildUserSignal(
+  answers: Record<string, string>,
+  questions: Question[],
+): UserSignal {
   const sums = {} as Record<Dimension, number>;
   const coverage = {} as Record<Dimension, number>;
   for (const dimension of DIMENSIONS) {
@@ -73,7 +76,8 @@ function poolStats(category: Category, people: Person[]): PoolStats {
   for (const dimension of DIMENSIONS) {
     const values = people.map((person) => person.personality_profile[dimension]);
     const average = values.reduce((sum, value) => sum + value, 0) / (values.length || 1);
-    const variance = values.reduce((sum, value) => sum + (value - average) ** 2, 0) / (values.length || 1);
+    const variance =
+      values.reduce((sum, value) => sum + (value - average) ** 2, 0) / (values.length || 1);
     mean[dimension] = average;
     sd[dimension] = Math.max(Math.sqrt(variance), 1);
   }
@@ -87,7 +91,11 @@ function poolStats(category: Category, people: Person[]): PoolStats {
  * deviations from the pool average, so "average" people no longer sit closest
  * to everybody. Only dimensions the user's answers actually touched are used.
  */
-function affinity(userZ: Record<Dimension, number>, personZ: Record<Dimension, number>, dims: Dimension[]): number {
+function affinity(
+  userZ: Record<Dimension, number>,
+  personZ: Record<Dimension, number>,
+  dims: Dimension[],
+): number {
   let dot = 0;
   let userNorm = 0;
   let personNorm = 0;
@@ -102,7 +110,11 @@ function affinity(userZ: Record<Dimension, number>, personZ: Record<Dimension, n
 
 function closestDimensions(user: Profile, other: Profile): Dimension[] {
   return [...DIMENSIONS]
-    .map((dimension) => ({ dimension, gap: Math.abs(user[dimension] - other[dimension]), strength: user[dimension] }))
+    .map((dimension) => ({
+      dimension,
+      gap: Math.abs(user[dimension] - other[dimension]),
+      strength: user[dimension],
+    }))
     .filter(({ strength }) => strength >= 55)
     .sort((a, b) => a.gap - b.gap || b.strength - a.strength)
     .slice(0, 3)
@@ -110,7 +122,11 @@ function closestDimensions(user: Profile, other: Profile): Dimension[] {
 }
 
 /** Count of dimensions where the user and the candidate sit on the same side of the pool average. */
-function agreementCount(userZ: Record<Dimension, number>, personZ: Record<Dimension, number>, dims: Dimension[]): number {
+function agreementCount(
+  userZ: Record<Dimension, number>,
+  personZ: Record<Dimension, number>,
+  dims: Dimension[],
+): number {
   return dims.filter((dimension) => userZ[dimension] * personZ[dimension] > 0).length;
 }
 
@@ -121,27 +137,34 @@ function rank(category: Category, signal: UserSignal, people: Person[]): Match[]
   if (!dims.length) return [];
   const active = dims;
   const userZ = {} as Record<Dimension, number>;
-  for (const dimension of DIMENSIONS) userZ[dimension] = (signal.profile[dimension] - mean[dimension]) / sd[dimension];
+  for (const dimension of DIMENSIONS)
+    userZ[dimension] = (signal.profile[dimension] - mean[dimension]) / sd[dimension];
 
   const scored = people.map((person) => {
     const personZ = {} as Record<Dimension, number>;
     for (const dimension of DIMENSIONS) {
-      personZ[dimension] = (person.personality_profile[dimension] - mean[dimension]) / sd[dimension];
+      personZ[dimension] =
+        (person.personality_profile[dimension] - mean[dimension]) / sd[dimension];
     }
     // Primary: shape agreement. Secondary: agreement on the user's strongest signals.
     // Tertiary: how many dimensions point the same way. Final: stable id order.
     const raw = affinity(userZ, personZ, active);
     const strong = [...active].sort((a, b) => userZ[b] - userZ[a]).slice(0, 3);
-    const secondary = strong.reduce((sum, dimension) => sum + userZ[dimension] * personZ[dimension], 0);
+    const secondary = strong.reduce(
+      (sum, dimension) => sum + userZ[dimension] * personZ[dimension],
+      0,
+    );
     const tertiary = agreementCount(userZ, personZ, active);
     return { person, raw, secondary, tertiary };
   });
 
-  scored.sort((a, b) =>
-    b.raw - a.raw ||
-    b.secondary - a.secondary ||
-    b.tertiary - a.tertiary ||
-    a.person.id.localeCompare(b.person.id));
+  scored.sort(
+    (a, b) =>
+      b.raw - a.raw ||
+      b.secondary - a.secondary ||
+      b.tertiary - a.tertiary ||
+      a.person.id.localeCompare(b.person.id),
+  );
 
   return scored.map(({ person, raw }) => ({
     person,
@@ -150,14 +173,17 @@ function rank(category: Category, signal: UserSignal, people: Person[]): Match[]
   }));
 }
 
-
-export function computeCategoryResults(category: Category, answers: Record<string, string>): CategoryResults {
+export function computeCategoryResults(
+  category: Category,
+  answers: Record<string, string>,
+): CategoryResults {
   const questions = QUESTIONS_BY_CATEGORY[category];
   const signal = buildUserSignal(answers, questions);
-  const people = (category === "stacy" ? STACIES : CHADS).filter((person) => person.category === category);
+  const people = (category === "stacy" ? STACIES : CHADS).filter(
+    (person) => person.category === category,
+  );
   return { category, profile: signal.profile, matches: rank(category, signal, people) };
 }
-
 
 export function strongestTraits(profile: Profile, count = 4): Dimension[] {
   return [...DIMENSIONS].sort((a, b) => profile[b] - profile[a]).slice(0, count);
@@ -166,7 +192,10 @@ export function strongestTraits(profile: Profile, count = 4): Dimension[] {
 export function explain(match: Match, profile: Profile): string {
   const dimensions = match.topDimensions.length ? match.topDimensions : strongestTraits(profile, 3);
   const words = dimensions.map((dimension) => DIMENSION_LABELS[dimension].toLowerCase());
-  const list = words.length > 1 ? `${words.slice(0, -1).join(", ")} and ${words[words.length - 1]}` : words[0];
-  const highs = strongestTraits(profile, 2).map((dimension) => DIMENSION_LABELS[dimension].toLowerCase());
+  const list =
+    words.length > 1 ? `${words.slice(0, -1).join(", ")} and ${words[words.length - 1]}` : words[0];
+  const highs = strongestTraits(profile, 2).map((dimension) =>
+    DIMENSION_LABELS[dimension].toLowerCase(),
+  );
   return `You scored particularly high in ${highs.join(" and ")}. Your profile aligns most closely with this match on ${list}, which pushed it to the top of your ranking.`;
 }
